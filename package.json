@@ -1,0 +1,26 @@
+{
+  "name": "waiter-availabity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "engines":{
+  "node":"4.2.4"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SinethembaDlova/waiter-availability.git"
+  },
+
+  "keywords": [],
+  "author": "SinethembaDlova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SinethembaDlova/waiter-availability/issues"
+  },
+  "homepage": "https://github.com/SinethembaDlova/waiter-availability#readme"
+}
