@@ -75,12 +75,39 @@ app.post('/', function(req,res){
 
 //login routes
 app.get('/login', function(req,res){
+  WaiterAvailability.find({}, function(err, site){
+    if (err) {
+      console.log(err);
+    }
 
+    else {
+        res.render('login')
+    }
+  })
 
 });
 
 
 app.post('/login', function(req,res){
+
+});
+
+//login routes
+app.get('/signup', function(req,res){
+  WaiterAvailability.find({}, function(err, site){
+    if (err) {
+      console.log(err);
+    }
+
+    else {
+        res.render('signup')
+    }
+  })
+
+});
+
+
+app.post('/signup', function(req,res){
 
 });
 
