@@ -21,7 +21,7 @@ var WaiterSchema = mongoose.Schema({
     },
 
     password: String,
-    workingDays: [];
+    workingDays: []
 
 });
 
@@ -56,7 +56,15 @@ app.use(flash());
 
 //Home routes
 app.get('/', function(req,res){
+  WaiterAvailability.find({}, function(err, site){
+    if (err) {
+      console.log(err);
+    }
 
+    else {
+        res.render('home')
+    }
+  })
 
 });
 
