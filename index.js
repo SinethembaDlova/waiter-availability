@@ -18,7 +18,11 @@ var WaiterSchema = mongoose.Schema({
         type: String,
         unique: true,
         sparse: true
-    }
+    },
+
+    password: String,
+    workingDays: [];
+
 });
 
 //Avoiding duplicates in waiter Schema
@@ -50,11 +54,43 @@ app.use(session({
 }));
 app.use(flash());
 
+//Home routes
+app.get('/', function(req,res){
 
 
+});
 
 
+app.post('/', function(req,res){
 
+});
+
+//login routes
+app.get('/login', function(req,res){
+
+
+});
+
+
+app.post('/login', function(req,res){
+
+});
+
+//waiters routes
+app.get('/waiters/:username', function(req,res){
+
+
+});
+
+
+app.post('/waiters/:username', function(req,res){
+
+});
+
+app.get('/admin/days', function(req,res){
+
+
+});
 
 
 //when my server running go to ports 3001 or any available port
