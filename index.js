@@ -87,6 +87,7 @@ app.post('/waiters/:username', function(req,res){
 
 });
 
+//admin's view
 app.get('/admin/days', function(req,res){
 
 
