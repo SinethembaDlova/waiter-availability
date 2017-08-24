@@ -33,7 +33,7 @@ WaiterSchema.index({
 });
 
 //Creating a model for my database
-var WaiterAvailability = mongoose.model('WaiterAvailability',WaiterSchema);
+var WaiterAvailability = mongoose.model('WaiterAvailability', WaiterSchema);
 
 
 app.engine('hbs', exphbs({
@@ -55,95 +55,87 @@ app.use(session({
 app.use(flash());
 
 //Home routes
-app.get('/', function(req,res){
-  WaiterAvailability.find({}, function(err, site){
-    if (err) {
-      console.log(err);
-    }
-
-    else {
-        res.render('home')
-    }
-  })
+app.get('/', function(req, res) {
+    WaiterAvailability.find({}, function(err, site) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('home')
+        }
+    })
 
 });
 
 
-app.post('/', function(req,res){
-
-});
-
-//login routes
-app.get('/login', function(req,res){
-  WaiterAvailability.find({}, function(err, site){
-    if (err) {
-      console.log(err);
-    }
-
-    else {
-        res.render('login')
-    }
-  })
-
-});
-
-
-app.post('/login', function(req,res){
+app.post('/', function(req, res) {
 
 });
 
 //login routes
-app.get('/signup', function(req,res){
-  WaiterAvailability.find({}, function(err, site){
-    if (err) {
-      console.log(err);
-    }
-
-    else {
-        res.render('signup')
-    }
-  })
+app.get('/login', function(req, res) {
+    WaiterAvailability.find({}, function(err, site) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('login')
+        }
+    })
 
 });
 
 
-app.post('/signup', function(req,res){
+app.post('/login', function(req, res) {
+
+});
+
+//login routes
+app.get('/signup', function(req, res) {
+    WaiterAvailability.find({}, function(err, site) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('signup')
+        }
+    })
+
+});
+
+
+app.post('/signup', function(req, res) {
 
 });
 
 //waiters routes
-app.get('/waiter/:username', function(req,res){
+app.get('/waiter/:username', function(req, res) {
 
-  var user = req.params.username;
+    var user = req.params.username;
 
-  WaiterAvailability.find({}, function(err, site){
-    if (err) {
-      console.log(err);
-    }
-
-    else {
-        res.render('waiter')
-    }
-  });
+    WaiterAvailability.find({}, function(err, site) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('waiter', {
+                userToGreet: user
+            })
+        }
+    });
 
 });
 
 
-app.post('/waiter/:username', function(req,res){
+app.post('/waiter/:username', function(req, res) {
 
 });
 
 //admin's view
-app.get('/admin/days', function(req,res){
-  WaiterAvailability.find({}, function(err, site){
-    if (err) {
-      console.log(err);
-    }
-
-    else {
-        res.render('admin')
-    }
-  })
+app.get('/admin/days', function(req, res) {
+    WaiterAvailability.find({}, function(err, site) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('admin')
+        }
+    })
 
 });
 
