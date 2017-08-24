@@ -112,7 +112,10 @@ app.post('/signup', function(req,res){
 });
 
 //waiters routes
-app.get('/waiters/:username', function(req,res){
+app.get('/waiter/:username', function(req,res){
+
+  var user = req.params.username;
+
   WaiterAvailability.find({}, function(err, site){
     if (err) {
       console.log(err);
@@ -126,7 +129,7 @@ app.get('/waiters/:username', function(req,res){
 });
 
 
-app.post('/waiters/:username', function(req,res){
+app.post('/waiter/:username', function(req,res){
 
 });
 
