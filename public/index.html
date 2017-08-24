@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style media="screen">
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+
+      .move {
+        animation: boxMove 1s forwards;
+      }
+      @keyframes boxMove {
+        0% {transform: scale(1);}
+        100% {transform: scale(1.5);z-index: 1;margin-top: 100px; margin-left: 300px;}
+      }
+      </style>
+      </script>
+  <body>
+      <div class="box">
+
+      </div>
+
+      <script type="text/javascript">
+      var box = document.querySelector('.box');
+
+      box.addEventListener('click', function(){
+        if (box.classList.contains('move')) {
+          box.classList.remove('move');
+        } else {
+          box.classList.add('move');
+
+        }
+      });
+    </script>
+  </body>
+</html>

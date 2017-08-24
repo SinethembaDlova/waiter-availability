@@ -113,7 +113,15 @@ app.post('/signup', function(req,res){
 
 //waiters routes
 app.get('/waiters/:username', function(req,res){
+  WaiterAvailability.find({}, function(err, site){
+    if (err) {
+      console.log(err);
+    }
 
+    else {
+        res.render('waiter')
+    }
+  });
 
 });
 
@@ -124,7 +132,15 @@ app.post('/waiters/:username', function(req,res){
 
 //admin's view
 app.get('/admin/days', function(req,res){
+  WaiterAvailability.find({}, function(err, site){
+    if (err) {
+      console.log(err);
+    }
 
+    else {
+        res.render('admin')
+    }
+  })
 
 });
 
