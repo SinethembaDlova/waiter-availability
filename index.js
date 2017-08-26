@@ -6,7 +6,7 @@ var session = require('express-session');
 var flash = require('express-flash');
 //require mangoose and create a database that takes strings
 var mongoose = require('mongoose');
-const mongoURL = process.env.MONGO_DB_URL || "mongodb://localhost/registration_numbers";
+const mongoURL = process.env.MONGO_DB_URL || "mongodb://localhost/waiter_availability";
 
 var app = express();
 
