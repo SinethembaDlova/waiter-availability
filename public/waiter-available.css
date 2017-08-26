@@ -4,13 +4,6 @@
   width: 1301px;
 }
 
-
-.card .card-body
-{
-  background-color: grey;
-  color: red;
-}
-
 .card-body p a
 {
   text-decoration: none;
