@@ -163,17 +163,28 @@ app.post('/waiter/:username', function(req, res) {
   var days = req.body.day;
   console.log(days);
 
-  WaiterAvailability.findOne({username:user}, update = { $inc: {workingDays:days}} , function(err, allUsers){
+  WaiterAvailability.findOne({username:user}, function(err, allUsers){
     if (err) {
       console.log(err);
     }
 
     else {
-      console.log(allUsers);
-      res.redirect('/waiter/:username')
+      console.log("********");
+      allUsers.workingDays.push(days);
+      allUsers.save({}, function(err, updatedUsers) {
+        if(err){
+          console.log(err);
+        }
+        else {
+          console.log(updatedUsers);
+          console.log("********");
+          res.redirect('/waiter/' + updatedUsers.username);
+        }
+      })
     }
   })
 });
+
 
 //admin's view
 app.get('/admin/days', function(req, res) {
@@ -186,7 +197,6 @@ app.get('/admin/days', function(req, res) {
     })
 
 });
-
 
 //when my server running go to ports 3001 or any available port
 const port = process.env.PORT || 3001;
