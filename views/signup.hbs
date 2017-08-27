@@ -12,6 +12,13 @@
         <div class="card col-md-8 col-xs-8 px-3 py-4">
             <h5 class="text-center mb-3">Create a new account</h5>
             <form class="form-signin" action="/signup" method="post">
+
+              {{#if messages.error}}
+                <div class="alert alert-danger" role="alert">
+                    {{messages.error}}
+                </div>
+              {{/if}}
+
                 <input type="text" class="form-control mb-1" name="name" placeholder="username" required autofocus>
                 <input type="password" class="form-control mb-1" name="passkey" placeholder="Password" required>
                 <input type="password" class="form-control mb-1" name="confirmPasskey"placeholder="Confirm Password" required>

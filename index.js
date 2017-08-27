@@ -67,19 +67,6 @@ app.get('/', function(req, res) {
 });
 
 
-
-//login routes
-app.get('/login', function(req, res) {
-    WaiterAvailability.find({}, function(err, site) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('login')
-        }
-    })
-
-});
-
 //login routes
 app.get('/signup', function(req, res) {
     WaiterAvailability.find({}, function(err, site) {
@@ -96,23 +83,48 @@ app.get('/signup', function(req, res) {
 app.post('/signup', function(req, res) {
     var name = req.body.name;
     var passkey = req.body.passkey;
+    var confirmPasskey = req.body.confirmPasskey;
 
     var user = new WaiterAvailability({
         username: name,
         password: passkey
     })
 
-    user.save(function(err, allUsers) {
-      if (err) {
-        console.log(err);
-      }
+    if (passkey != confirmPasskey) {
+      req.flash('error', 'Please enter the same password');
+      res.redirect('/signup');
+    }
 
-      else {
-        console.log(allUsers);
-        res.redirect('/signup')
-      }
-    })
+    else {
+      user.save(function(err, allUsers) {
+        if (err) {
+          if (err.code === 11000) {
+            req.flash('error', 'This user already exists!');
+            res.redirect('/signup');
+          }
+        }
+
+        else {
+          console.log(allUsers);
+          req.flash('success', 'User successfully added to the database. Please login')
+          res.redirect('/login');
+        }
+      })
+    }
 });
+
+//login routes
+app.get('/login', function(req, res) {
+    WaiterAvailability.find({}, function(err, site) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('login')
+        }
+    })
+
+});
+
 
 app.post('/login', function(req, res) {
     var name = req.body.name;
