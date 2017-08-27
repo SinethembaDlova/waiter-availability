@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between mb-5">
   <div class="container">
-    <a class="navbar-brand" href="#"><h2 class="display-6">Waiter availability</h2></a>
+    <a class="navbar-brand" href="/"><h2 class="display-6">Waiter availability</h2></a>
   </div>
 </nav>
 
@@ -12,8 +12,8 @@
         <div class="card col-md-8 col-xs-8 px-3 py-4">
             <h5 class="text-center mb-3">Log in to your account</h5>
             <form class="form-signin" action="/login" method="post">
-                <input type="text" class="form-control mb-1" placeholder="username" required autofocus>
-                <input type="password" class="form-control mb-1" placeholder="Password" required>
+                <input type="text" class="form-control mb-1" name="name" placeholder="username" required autofocus>
+                <input type="password" class="form-control mb-1" name="passkey" placeholder="Password" required>
                 <button class="btn btn-lg btn-primary btn-block  mt-2" type="submit">Log in</button>
                 <div class="col-md-12 text-md-center mt-2">
                     <p class="lead"><small>Dont have an account? <a href="/signup">Sign up</a></small></p>

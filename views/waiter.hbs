@@ -1,50 +1,53 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between mb-3">
   <div class="container">
     <a class="navbar-brand" href="#"><h2 class="display-6">Waiter availability</h2></a>
+
+    <a class="btn btn-primary" type="submit" href="/login" role="button">Log out</a>
   </div>
 </nav>
 
 <div class="container">
-  <form class="jumbotron jumbotron-fluid pt-4">
-    <div class="container">
-      <form class="form-signin" action="/waiter/:username" method="post">
-      <h1 class="display-5">Welcome, {{userToGreet}}</h1>
-      <p class="lead mb-4">Please select days that you'll be available on for work:</p>
+  <div class="col-md-12">
+    <form class="jumbotron jumbotron-fluid pt-4">
+      <div class="container">
+        <form class="form-signin" action="/waiter/:username " method="post">
+        <h1 class="display-5">Welcome, {{userToGreet}}</h1>
+        <p class="lead mb-4">Please select days that you'll be available on for work:</p>
 
-      <div class="col-md-12 text-center mb-3">
-        <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-outline-danger active">
-            <input type="checkbox" checked autocomplete="off">Monday
-          </label>
-          <label class="btn btn-outline-danger">
-            <input type="checkbox" autocomplete="off">Tuesday
-          </label>
-          <label class="btn btn-outline-danger">
-            <input type="checkbox" autocomplete="off">Wednesday
-          </label>
-          <label class="btn btn-outline-danger active">
-            <input type="checkbox" checked autocomplete="off">Thursday
-          </label>
-          <label class="btn btn-outline-danger">
-            <input type="checkbox" autocomplete="off">Friday
-          </label>
-          <label class="btn btn-outline-danger">
-            <input type="checkbox" autocomplete="off">Saturday
-          </label>
-          <label class="btn btn-outline-danger">
-            <input type="checkbox" autocomplete="off">Sunday
-          </label>
+        <div class="col-md-12 text-center mb-3">
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-outline-danger active">
+              <input type="checkbox" checked autocomplete="off">Monday
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="checkbox" autocomplete="off">Tuesday
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="checkbox" autocomplete="off">Wednesday
+            </label>
+            <label class="btn btn-outline-danger active">
+              <input type="checkbox" checked autocomplete="off">Thursday
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="checkbox" autocomplete="off">Friday
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="checkbox" autocomplete="off">Saturday
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="checkbox" autocomplete="off">Sunday
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+          </div>
         </div>
       </div>
+    </form>
 
-      <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <button type="button" class="btn btn-dark btn-lg btn-block">Submit</button>
-        </div>
-      </div>
-    </div>
-  </form>
-
-
+  </div>
 </div>

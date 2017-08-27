@@ -67,9 +67,6 @@ app.get('/', function(req, res) {
 });
 
 
-app.post('/', function(req, res) {
-
-});
 
 //login routes
 app.get('/login', function(req, res) {
@@ -80,11 +77,6 @@ app.get('/login', function(req, res) {
             res.render('login')
         }
     })
-
-});
-
-
-app.post('/login', function(req, res) {
 
 });
 
@@ -102,8 +94,39 @@ app.get('/signup', function(req, res) {
 
 
 app.post('/signup', function(req, res) {
+    var name = req.body.name;
+    var passkey = req.body.passkey;
 
+    var user = new WaiterAvailability({
+        username: name,
+        password: passkey
+    })
+
+    user.save(function(err, allUsers) {
+      if (err) {
+        console.log(err);
+      }
+
+      else {
+        console.log(allUsers);
+        res.redirect('/signup')
+      }
+    })
 });
+
+app.post('/login', function(req, res) {
+    var name = req.body.name;
+    var passkey = req.body.passkey;
+
+    WaiterAvailability.find({}, function(err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/waiter/' + username);
+        }
+    })
+});
+
 
 //waiters routes
 app.get('/waiter/:username', function(req, res) {

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between mb-5">
   <div class="container">
-    <a class="navbar-brand" href="#"><h2 class="display-6">Waiter availability</h2></a>
+    <a class="navbar-brand" href="/"><h2 class="display-6">Waiter availability</h2></a>
   </div>
 </nav>
 
@@ -12,9 +12,9 @@
         <div class="card col-md-8 col-xs-8 px-3 py-4">
             <h5 class="text-center mb-3">Create a new account</h5>
             <form class="form-signin" action="/signup" method="post">
-                <input type="text" class="form-control mb-1" placeholder="username" required autofocus>
-                <input type="password" class="form-control mb-1" placeholder="Password" required>
-                <input type="password" class="form-control mb-1" placeholder="Confirm Password" required>
+                <input type="text" class="form-control mb-1" name="name" placeholder="username" required autofocus>
+                <input type="password" class="form-control mb-1" name="passkey" placeholder="Password" required>
+                <input type="password" class="form-control mb-1" name="confirmPasskey"placeholder="Confirm Password" required>
                 <button class="btn btn-lg btn-success btn-block  mt-3" type="submit">Create an account</button>
             </form>
         </div>
