@@ -134,7 +134,7 @@ app.post('/login', function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.redirect('/waiter/' + username);
+            res.redirect('/waiter/' + name);
         }
     })
 });
@@ -159,7 +159,20 @@ app.get('/waiter/:username', function(req, res) {
 
 
 app.post('/waiter/:username', function(req, res) {
+  var user = req.params.username;
+  var days = req.body.day;
+  console.log(days);
 
+  WaiterAvailability.findOne({username:user}, update = { $inc: {workingDays:days}} , function(err, allUsers){
+    if (err) {
+      console.log(err);
+    }
+
+    else {
+      console.log(allUsers);
+      res.redirect('/waiter/:username')
+    }
+  })
 });
 
 //admin's view

@@ -8,7 +8,7 @@
 
 <div class="container">
   <div class="col-md-12">
-    <form class="jumbotron jumbotron-fluid pt-4">
+    <div class="jumbotron jumbotron-fluid pt-4">
       <div class="container">
         <form class="form-signin" action="/waiter/:username " method="post">
         <h1 class="display-5">Welcome, {{userToGreet}}</h1>
@@ -16,26 +16,26 @@
 
         <div class="col-md-12 text-center mb-3">
           <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-outline-danger active">
-              <input type="checkbox" checked autocomplete="off">Monday
+            <label class="btn btn-outline-danger">
+              <input type="checkbox" name="day">Monday
             </label>
             <label class="btn btn-outline-danger">
-              <input type="checkbox" autocomplete="off">Tuesday
+              <input type="checkbox" name="day">Tuesday
             </label>
             <label class="btn btn-outline-danger">
-              <input type="checkbox" autocomplete="off">Wednesday
-            </label>
-            <label class="btn btn-outline-danger active">
-              <input type="checkbox" checked autocomplete="off">Thursday
+              <input type="checkbox" name="day">Wednesday
             </label>
             <label class="btn btn-outline-danger">
-              <input type="checkbox" autocomplete="off">Friday
+              <input type="checkbox" name="day">Thursday
             </label>
             <label class="btn btn-outline-danger">
-              <input type="checkbox" autocomplete="off">Saturday
+              <input type="checkbox" name="day">Friday
             </label>
             <label class="btn btn-outline-danger">
-              <input type="checkbox" autocomplete="off">Sunday
+              <input type="checkbox" name="day">Saturday
+            </label>
+            <label class="btn btn-outline-danger">
+              <input type="checkbox" name="day">Sunday
             </label>
           </div>
         </div>
@@ -43,11 +43,11 @@
         <div class="row">
           <div class="col-md-3"></div>
           <div class="col-md-6">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
           </div>
         </div>
       </div>
     </form>
-
+  </div>
   </div>
 </div>
