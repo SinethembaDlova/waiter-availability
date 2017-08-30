@@ -150,7 +150,7 @@ app.get('/waiter/:username', function(req, res) {
             console.log(err);
         } else {
             res.render('waiter', {
-                userToGreet: user
+                username: user
             })
         }
     });
@@ -161,6 +161,7 @@ app.get('/waiter/:username', function(req, res) {
 app.post('/waiter/:username', function(req, res) {
   var user = req.params.username;
   var days = req.body.day;
+  console.log(user);
   console.log(days);
 
   WaiterAvailability.findOne({username:user}, function(err, allUsers){
@@ -170,7 +171,8 @@ app.post('/waiter/:username', function(req, res) {
 
     else {
       console.log("********");
-      allUsers.workingDays.push(days);
+      console.log(allUsers);
+      allUsers.workingDays = days;
       allUsers.save({}, function(err, updatedUsers) {
         if(err){
           console.log(err);
