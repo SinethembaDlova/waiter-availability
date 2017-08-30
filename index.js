@@ -143,14 +143,15 @@ app.post('/login', function(req, res) {
 //waiters routes
 app.get('/waiter/:username', function(req, res) {
 
-    var user = req.params.username;
+    var waiter = req.params.username;
 
     WaiterAvailability.find({}, function(err, site) {
         if (err) {
             console.log(err);
         } else {
             res.render('waiter', {
-                username: user
+                username: waiter
+                
             })
         }
     });
@@ -159,28 +160,28 @@ app.get('/waiter/:username', function(req, res) {
 
 
 app.post('/waiter/:username', function(req, res) {
-  var user = req.params.username;
+  var waiter = req.params.username;
   var days = req.body.day;
-  console.log(user);
+  console.log(waiter);
   console.log(days);
 
-  WaiterAvailability.findOne({username:user}, function(err, allUsers){
+  WaiterAvailability.findOne({username:waiter}, function(err, theUser){
     if (err) {
       console.log(err);
     }
 
     else {
       console.log("********");
-      console.log(allUsers);
-      allUsers.workingDays = days;
-      allUsers.save({}, function(err, updatedUsers) {
+      console.log(theUser);
+      theUser.workingDays = days;
+      theUser.save({}, function(err, updatedUser) {
         if(err){
           console.log(err);
         }
         else {
-          console.log(updatedUsers);
+          console.log(updatedUser);
           console.log("********");
-          res.redirect('/waiter/' + updatedUsers.username);
+          res.redirect('/waiter/' + updatedUser.username);
         }
       })
     }
