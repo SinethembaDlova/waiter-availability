@@ -141,25 +141,8 @@ app.get('/waiter/:username', function(req, res) {
     var waiter = req.params.username;
     var shiftDays = req.body.day;
 
-    //A function that will return me the days that a waiter has checked that they'll be available for
 
-  /*  function daysWaiterChecked() {
-      WaiterAvailability.findOne({username:waiter}, function(err, results) {
-        if (err) {
-          console.log(err);
-        }
-
-        else {
-          console.log("##########");
-          console.log(results.workingDays);
-          //return results.workingDays;
-
-        }
-      })
-    }
-
-*/
-    WaiterAvailability.find({}, function(err, site) {
+    WaiterAvailability.findOne({username: waiter}, function(err, shiftDays) {
         if (err) {
             console.log(err);
         } else {
