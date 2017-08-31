@@ -91,25 +91,21 @@ app.post('/signup', function(req, res) {
     })
 
     if (passkey != confirmPasskey) {
-      req.flash('error', 'Please enter the same password');
-      res.redirect('/signup');
-    }
-
-    else {
-      user.save(function(err, allUsers) {
-        if (err) {
-          if (err.code === 11000) {
-            req.flash('error', 'This user already exists!');
-            res.redirect('/signup');
-          }
-        }
-
-        else {
-          console.log(allUsers);
-          req.flash('success', 'User successfully added to the database. Please login')
-          res.redirect('/login');
-        }
-      })
+        req.flash('error', 'Please enter the same password');
+        res.redirect('/signup');
+    } else {
+        user.save(function(err, allUsers) {
+            if (err) {
+                if (err.code === 11000) {
+                    req.flash('error', 'This user already exists!');
+                    res.redirect('/signup');
+                }
+            } else {
+                console.log(allUsers);
+                req.flash('success', 'User successfully added to the database. Please login')
+                res.redirect('/login');
+            }
+        })
     }
 });
 
@@ -142,16 +138,34 @@ app.post('/login', function(req, res) {
 
 //waiters routes
 app.get('/waiter/:username', function(req, res) {
-
     var waiter = req.params.username;
+    var shiftDays = req.body.day;
 
+    //A function that will return me the days that a waiter has checked that they'll be available for
+
+  /*  function daysWaiterChecked() {
+      WaiterAvailability.findOne({username:waiter}, function(err, results) {
+        if (err) {
+          console.log(err);
+        }
+
+        else {
+          console.log("##########");
+          console.log(results.workingDays);
+          //return results.workingDays;
+
+        }
+      })
+    }
+
+*/
     WaiterAvailability.find({}, function(err, site) {
         if (err) {
             console.log(err);
         } else {
             res.render('waiter', {
-                username: waiter
-                
+                username: waiter,
+                shiftDays : shiftDays
             })
         }
     });
@@ -160,32 +174,31 @@ app.get('/waiter/:username', function(req, res) {
 
 
 app.post('/waiter/:username', function(req, res) {
-  var waiter = req.params.username;
-  var days = req.body.day;
-  console.log(waiter);
-  console.log(days);
+    var waiter = req.params.username;
+    var shiftDays = req.body.day;
+    console.log(waiter);
+    console.log(shiftDays);
 
-  WaiterAvailability.findOne({username:waiter}, function(err, theUser){
-    if (err) {
-      console.log(err);
-    }
-
-    else {
-      console.log("********");
-      console.log(theUser);
-      theUser.workingDays = days;
-      theUser.save({}, function(err, updatedUser) {
-        if(err){
-          console.log(err);
+    WaiterAvailability.findOne({
+        username: waiter
+    }, function(err, theUser) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("********");
+            console.log(theUser);
+            theUser.workingDays = shiftDays;
+            theUser.save({}, function(err, updatedUser) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(updatedUser);
+                    console.log("********");
+                    res.redirect('/waiter/' + updatedUser.username);
+                }
+            })
         }
-        else {
-          console.log(updatedUser);
-          console.log("********");
-          res.redirect('/waiter/' + updatedUser.username);
-        }
-      })
-    }
-  })
+    })
 });
 
 
