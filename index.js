@@ -141,14 +141,23 @@ app.get('/waiter/:username', function(req, res) {
     var waiter = req.params.username;
     var shiftDays = req.body.day;
 
-
     WaiterAvailability.findOne({username: waiter}, function(err, shiftDays) {
+
+      var shiftMap = {};
+
+      for (var i = 0; i < shiftDays.workingDays.length; i++) {
+        if (shiftMap[shiftDays.workingDays[i]] === undefined) {
+            shiftMap[shiftDays.workingDays[i]] = "active"
+        }
+      }
+      console.log(shiftMap);
+
         if (err) {
             console.log(err);
         } else {
             res.render('waiter', {
                 username: waiter,
-                shiftDays : shiftDays
+                shiftDays: shiftMap
             })
         }
     });
