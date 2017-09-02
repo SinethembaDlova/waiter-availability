@@ -141,16 +141,18 @@ app.get('/waiter/:username', function(req, res) {
     var waiter = req.params.username;
     var shiftDays = req.body.day;
 
-    WaiterAvailability.findOne({username: waiter}, function(err, shiftDays) {
+    WaiterAvailability.findOne({
+        username: waiter
+    }, function(err, shiftDays) {
 
-      var shiftMap = {};
+        var shiftMap = {};
 
-      for (var i = 0; i < shiftDays.workingDays.length; i++) {
-        if (shiftMap[shiftDays.workingDays[i]] === undefined) {
-            shiftMap[shiftDays.workingDays[i]] = "active"
+        for (var i = 0; i < shiftDays.workingDays.length; i++) {
+            if (shiftMap[shiftDays.workingDays[i]] === undefined) {
+                shiftMap[shiftDays.workingDays[i]] = "active"
+            }
         }
-      }
-      console.log(shiftMap);
+        console.log(shiftMap);
 
         if (err) {
             console.log(err);
@@ -196,19 +198,53 @@ app.post('/waiter/:username', function(req, res) {
 
 //admin's view
 app.get('/admin/days', function(req, res) {
-    WaiterAvailability.find({}, function(err, site) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('admin')
-        }
-    })
+    // List all names that work days shift
+    var mondayShift = [];
+    var tuesdayShift = [];
+    var wednesdayShift = [];
+    var thursdayShift = [];
+    var fridayShift = [];
+    var saturdayShift = [];
+    var sundayShift = [];
 
+    WaiterAvailability.find({}, function(err, db) {
+      if (err) {
+          console.log(err);
+      } else {
+        console.log(db);
+        for (var i = 0; i < db.length; i++) {
+            var roaster = db[i].workingDays;
+            console.log(roaster);
+            var workingWaiter = db[i].username;
+            console.log(workingWaiter);
+
+            for (var i = 0; i < roaster.length; i++) {
+
+                if (roaster[i] === 'Monday') {
+                    mondayShift.push(workingWaiter);
+                } else if (roaster[i] === 'Tuesday') {
+                    tuesdayShift.push(workingWaiter);
+                } else if (roaster[i] === 'Wednesday') {
+                    wednesdayShift.push(workingWaiter);
+                } else if (roaster[i] === 'Thursday') {
+                    thursdayShift.push(workingWaiter);
+                } else if (roaster[i] === 'Friday') {
+                    fridayShift.push(workingWaiter);
+                } else if (roaster[i] === 'Saturday') {
+                    saturdayShift.push(workingWaiter);
+                } else {
+                    sundayShift.push(workingWaiter);
+                }
+            }
+        }
+        res.render('admin');
+      }
+    })
 });
+
 
 //when my server running go to ports 3001 or any available port
 const port = process.env.PORT || 3001;
-
 app.listen(port, function(err) {
     if (err) {
         return err;
