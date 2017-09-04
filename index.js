@@ -199,6 +199,18 @@ app.post('/waiter/:username', function(req, res) {
     })
 });
 
+//changing the background color of the block, depending on the conditions.
+function dayBlockStyle(waiterCount){
+  if (waiterCount === 3){
+    return "bg-success";
+  }
+  else if (waiterCount > 3){
+    return "bg-warning";
+  }
+  else {
+    return "bg-danger";
+  }
+}
 
 //admin's view
 app.get('/admin/days', function(req, res) {
@@ -252,12 +264,26 @@ app.get('/admin/days', function(req, res) {
         }
         res.render('admin', {
             mondayNames: mondayShift,
+            mondayCounter: mondayShift.length,
+            mondayStyle : dayBlockStyle(mondayShift.length),
             tuesdayNames: tuesdayShift,
+            tuesdayCounter: tuesdayShift.length,
+            tuesdayStyle: dayBlockStyle(tuesdayShift.length),
             wednesdayNames: wednesdayShift,
-            thusdayNames: thursdayShift,
+            wednesdayCounter: wednesdayShift.length,
+            wednesdayStyle: dayBlockStyle(wednesdayShift.length),
+            thursdayNames: thursdayShift,
+            thursdayCounter: thursdayShift.length,
+            thursdayStyle: dayBlockStyle(thursdayShift.length),
             fridayNames: fridayShift,
+            fridayCounter:fridayShift.length,
+            fridayStyle: dayBlockStyle(fridayShift.length),
             saturdayNames: saturdayShift,
-            sundayNames: sundayShift
+            saturdayCounter: saturdayShift.length,
+            saturdayStyle: dayBlockStyle(saturdayShift.length),
+            sundayNames: sundayShift,
+            sundayCounter:sundayShift.length,
+            sundayStyle: dayBlockStyle(sundayShift.length)
         });
     })
 });
