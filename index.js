@@ -130,7 +130,11 @@ app.post('/login', function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.redirect('/waiter/' + name);
+            if (name === "Admin" && passkey === "admin") {
+                res.redirect('/admin/days')
+            } else {
+                res.redirect('/waiter/' + name);
+            }
         }
     })
 });
@@ -208,37 +212,53 @@ app.get('/admin/days', function(req, res) {
     var sundayShift = [];
 
     WaiterAvailability.find({}, function(err, db) {
-      if (err) {
-          console.log(err);
-      } else {
-        console.log(db);
+        if (err) {
+            console.log(err);
+        } else {
+            //console.log(db);
+        }
+    }).then(function(db) {
         for (var i = 0; i < db.length; i++) {
             var roaster = db[i].workingDays;
-            console.log(roaster);
+            //      console.log(roaster);
             var workingWaiter = db[i].username;
-            console.log(workingWaiter);
+            //    console.log(workingWaiter);
 
-            for (var i = 0; i < roaster.length; i++) {
-
-                if (roaster[i] === 'Monday') {
+            for (var ii = 0; ii < roaster.length; ii++) {
+                console.log("*************");
+                if (roaster[ii] === 'Monday') {
                     mondayShift.push(workingWaiter);
-                } else if (roaster[i] === 'Tuesday') {
+                    console.log(mondayShift);
+                } else if (roaster[ii] === 'Tuesday') {
                     tuesdayShift.push(workingWaiter);
-                } else if (roaster[i] === 'Wednesday') {
+                    console.log("tue" + tuesdayShift);
+                } else if (roaster[ii] === 'Wednesday') {
                     wednesdayShift.push(workingWaiter);
-                } else if (roaster[i] === 'Thursday') {
+                    console.log("wed" + wednesdayShift);
+                } else if (roaster[ii] === 'Thursday') {
                     thursdayShift.push(workingWaiter);
-                } else if (roaster[i] === 'Friday') {
+                    console.log("thur" + thursdayShift);
+                } else if (roaster[ii] === 'Friday') {
                     fridayShift.push(workingWaiter);
-                } else if (roaster[i] === 'Saturday') {
+                    console.log("fri" + fridayShift);
+                } else if (roaster[ii] === 'Saturday') {
                     saturdayShift.push(workingWaiter);
+                    console.log(saturdayShift);
                 } else {
                     sundayShift.push(workingWaiter);
+                    console.log(sundayShift);
                 }
             }
         }
-        res.render('admin');
-      }
+        res.render('admin', {
+            mondayNames: mondayShift,
+            tuesdayNames: tuesdayShift,
+            wednesdayNames: wednesdayShift,
+            thusdayNames: thursdayShift,
+            fridayNames: fridayShift,
+            saturdayNames: saturdayShift,
+            sundayNames: sundayShift
+        });
     })
 });
 
