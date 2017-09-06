@@ -102,7 +102,7 @@ app.post('/signup', function(req, res) {
                 }
             } else {
                 console.log(allUsers);
-                req.flash('success', 'User successfully added to the database. Please login')
+                req.flash('success', 'User successfully added to the database. Please login');
                 res.redirect('/login');
             }
         })
@@ -192,6 +192,7 @@ app.post('/waiter/:username', function(req, res) {
                 } else {
                     console.log(updatedUser);
                     console.log("********");
+                    req.flash('success', 'Your working days are successfully updated.')
                     res.redirect('/waiter/' + updatedUser.username);
                 }
             })
@@ -200,16 +201,14 @@ app.post('/waiter/:username', function(req, res) {
 });
 
 //changing the background color of the block, depending on the conditions.
-function dayBlockStyle(waiterCount){
-  if (waiterCount === 3){
-    return "bg-success";
-  }
-  else if (waiterCount > 3){
-    return "bg-warning";
-  }
-  else {
-    return "bg-danger";
-  }
+function dayBlockStyle(waiterCount) {
+    if (waiterCount === 3) {
+        return "bg-success";
+    } else if (waiterCount > 3) {
+        return "bg-warning";
+    } else {
+        return "bg-danger";
+    }
 }
 
 //admin's view
@@ -237,35 +236,27 @@ app.get('/admin/days', function(req, res) {
             //    console.log(workingWaiter);
 
             for (var ii = 0; ii < roaster.length; ii++) {
-                console.log("*************");
                 if (roaster[ii] === 'Monday') {
                     mondayShift.push(workingWaiter);
-                    console.log(mondayShift);
                 } else if (roaster[ii] === 'Tuesday') {
                     tuesdayShift.push(workingWaiter);
-                    console.log("tue" + tuesdayShift);
                 } else if (roaster[ii] === 'Wednesday') {
                     wednesdayShift.push(workingWaiter);
-                    console.log("wed" + wednesdayShift);
                 } else if (roaster[ii] === 'Thursday') {
                     thursdayShift.push(workingWaiter);
-                    console.log("thur" + thursdayShift);
                 } else if (roaster[ii] === 'Friday') {
                     fridayShift.push(workingWaiter);
-                    console.log("fri" + fridayShift);
                 } else if (roaster[ii] === 'Saturday') {
                     saturdayShift.push(workingWaiter);
-                    console.log(saturdayShift);
                 } else {
                     sundayShift.push(workingWaiter);
-                    console.log(sundayShift);
                 }
             }
         }
         res.render('admin', {
             mondayNames: mondayShift,
             mondayCounter: mondayShift.length,
-            mondayStyle : dayBlockStyle(mondayShift.length),
+            mondayStyle: dayBlockStyle(mondayShift.length),
             tuesdayNames: tuesdayShift,
             tuesdayCounter: tuesdayShift.length,
             tuesdayStyle: dayBlockStyle(tuesdayShift.length),
@@ -276,18 +267,67 @@ app.get('/admin/days', function(req, res) {
             thursdayCounter: thursdayShift.length,
             thursdayStyle: dayBlockStyle(thursdayShift.length),
             fridayNames: fridayShift,
-            fridayCounter:fridayShift.length,
+            fridayCounter: fridayShift.length,
             fridayStyle: dayBlockStyle(fridayShift.length),
             saturdayNames: saturdayShift,
             saturdayCounter: saturdayShift.length,
             saturdayStyle: dayBlockStyle(saturdayShift.length),
             sundayNames: sundayShift,
-            sundayCounter:sundayShift.length,
+            sundayCounter: sundayShift.length,
             sundayStyle: dayBlockStyle(sundayShift.length)
         });
     })
 });
 
+//Create a route that will reset the roaster for next week.
+
+app.get('/reset/roaster', function(req, res) {
+    WaiterAvailability.find({}, function(err, db) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+          console.log(db);
+          db.forEach(function(data){
+              data.workingDays = [];
+          });
+
+          console.log(db);
+          db.save({workingDays: {}}, function(err, updatedDb) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(updatedDb);
+              res.redirect('/admin/days')
+            }
+          });
+
+        }
+      });
+    // }).then(function(db) {
+    //     doc.name = doc.name.replace(/&nbsp;/g,"");
+    //     db.tests.update({ "_id": doc._id },{ "$set": { "name": doc.name } });
+    //
+    //
+    //     // for (var i = 0; i < db.length; i++) {
+    //     //     db[i].workingDays = [];
+    //     // }
+    //     //    console.log(db);
+    //
+    //     console.log('updating...1');
+    //
+    //
+    //     db.save({}, function(err, updatedDb) {
+    //         console.log('updating...2');
+    //         if (err) {
+    //             console.log(err);
+    //         } else {
+    //             console.log("data saved in the DB");
+    //             res.redirect('/admin/days')
+    //         }
+    //     });
+
+})
 
 //when my server running go to ports 3001 or any available port
 const port = process.env.PORT || 3001;
