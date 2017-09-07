@@ -290,17 +290,18 @@ app.get('/reset/roaster', function(req, res) {
           console.log(db);
           db.forEach(function(data){
               data.workingDays = [];
-          });
+              data.save();
+          })
 
-          console.log(db);
-          db.save({workingDays: {}}, function(err, updatedDb) {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log(updatedDb);
-              res.redirect('/admin/days')
-            }
-          });
+          res.redirect('/admin/days')
+          // console.log(db);
+          // .save({workingDays: {}}, function(err, updatedDb) {
+          //   if (err) {
+          //     console.log(err);
+          //   } else {
+          //     console.log(updatedDb);
+          //   }
+          // });
 
         }
       });
