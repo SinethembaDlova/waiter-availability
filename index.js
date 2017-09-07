@@ -292,41 +292,11 @@ app.get('/reset/roaster', function(req, res) {
               data.workingDays = [];
               data.save();
           })
-
-          res.redirect('/admin/days')
-          // console.log(db);
-          // .save({workingDays: {}}, function(err, updatedDb) {
-          //   if (err) {
-          //     console.log(err);
-          //   } else {
-          //     console.log(updatedDb);
-          //   }
-          // });
-
         }
+      }).then(function(){
+        res.redirect('/admin/days')
       });
-    // }).then(function(db) {
-    //     doc.name = doc.name.replace(/&nbsp;/g,"");
-    //     db.tests.update({ "_id": doc._id },{ "$set": { "name": doc.name } });
-    //
-    //
-    //     // for (var i = 0; i < db.length; i++) {
-    //     //     db[i].workingDays = [];
-    //     // }
-    //     //    console.log(db);
-    //
-    //     console.log('updating...1');
-    //
-    //
-    //     db.save({}, function(err, updatedDb) {
-    //         console.log('updating...2');
-    //         if (err) {
-    //             console.log(err);
-    //         } else {
-    //             console.log("data saved in the DB");
-    //             res.redirect('/admin/days')
-    //         }
-    //     });
+
 
 })
 

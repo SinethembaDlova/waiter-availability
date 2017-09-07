@@ -1,63 +1,63 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between mb-2">
   <div class="container">
-    <a class="navbar-brand" href="#"><h2 class="display-6">Waiter availability</h2></a>
-    <a class="btn btn-primary" type="submit" href="/login" role="button">Log out</a>
-  </div>
+    <a class="navbar-brand " href="admin/days"><h2 class="display-6">Waiter availability</h2></a>
+    <div class="form-inline">
+      <a class="btn btn-danger mx-1" type="submit" href="/reset/roaster" role="button">Clear roaster</a>
+      <a class="btn btn-primary" type="submit" href="/login" role="button">Log out</a>
+    </div>
+</div>
 </nav>
 
 
 <div class="container">
-  <div class="row">
-    <div class="breadcrumb col-md-12 py-1 d-flex justify-content-between">
-      <p class="lead mt-2">Dashboard</p>
-      <button class="btn btn-danger mr-sm-1" type="submit"><a href="/reset/roaster">Clear roaster</a></button>
-    </div>
+  <div class="row d-flex justify-content-between col-md-12 my-4 bg-secondary">
+      <p class="lead mt-2 text-white"><b>Dashboard</b></p>
   </div>
 
-  <div class="row d-flex justify-content-between col-md-2 col-lg-12"  data-children=".item">
-    <div class="card text-white mb-2  {{mondayStyle}}" style="max-width: 20rem;">
+  <div class="row d-flex justify-content-between col-md-12 col-lg-12 col-sm-12 center-block" data-children=".item">
+    <div class="card text-white mb-2 mb-2 col-md-4 col-sm-12  {{mondayStyle}}" style="max-width: 20rem;">
       <div class="card-header">Monday<span class="badge badge-secondary ml-2">{{mondayCounter}}</span></div>
       <div class="card-body">
         <p class="card-text"><a data-toggle="collapse" data-parent="#exampleAccordion"  href="#mondayCollapse" aria-expanded="false" aria-controls="collapse1">view names <span class="lnr lnr-chevron-right"></span></a></p>
       </div>
     </div>
 
-    <div class="card text-white mb-2 {{tuesdayStyle}}" style="max-width: 20rem;">
+    <div class="card text-white mb-2 col-md-6 col-sm-12  {{tuesdayStyle}}" style="max-width: 20rem;">
       <div class="card-header">Tuesday<span class="badge badge-secondary ml-2">{{tuesdayCounter}}</span></div>
       <div class="card-body">
         <p class="card-text"><a data-toggle="collapse" data-parent="#exampleAccordion"  href="#tuesdayCollapse" aria-expanded="false" aria-controls="collapse2">view names <span class="lnr lnr-chevron-right"></span></a></p>
       </div>
     </div>
 
-    <div class="card text-white mb-2 {{wednesdayStyle}}" style="max-width: 20rem;">
+    <div class="card text-white mb-2 mb-2 col-md-6 col-sm-12  {{wednesdayStyle}}" style="max-width: 20rem;">
       <div class="card-header">Wednesday<span class="badge badge-secondary ml-2">{{wednesdayCounter}}</span></div>
       <div class="card-body">
         <p class="card-text"><a data-toggle="collapse" data-parent="#exampleAccordion"  href="#wednesdayCollapse" aria-expanded="false" aria-controls="collapse3">view names <span class="lnr lnr-chevron-right"></span></a></p>
       </div>
     </div>
 
-    <div class="card text-white mb-2 {{thursdayStyle}}" style="max-width: 20rem;">
+    <div class="card text-white mb-2 mb-2 col-md-6 col-sm-12  {{thursdayStyle}}" style="max-width: 20rem;">
       <div class="card-header">Thursday<span class="badge badge-secondary ml-2">{{thursdayCounter}}</span></div>
       <div class="card-body">
         <p class="card-text"><a data-toggle="collapse" data-parent="#exampleAccordion"  href="#thursdayCollapse" aria-expanded="false" aria-controls="collapse4">view names <span class="lnr lnr-chevron-right"></span></a></p>
       </div>
     </div>
 
-    <div class="card text-white mb-2 {{fridayStyle}}" style="max-width: 20rem;">
+    <div class="card text-white mb-2 mb-2 col-md-6 col-sm-12  {{fridayStyle}}" style="max-width: 20rem;">
       <div class="card-header">Friday<span class="badge badge-secondary ml-2">{{fridayCounter}}</span></div>
       <div class="card-body">
         <p class="card-text"><a data-toggle="collapse" data-parent="#exampleAccordion"  href="#fridayCollapse" aria-expanded="false" aria-controls="collapse5">view names <span class="lnr lnr-chevron-right"></span></a></p>
       </div>
     </div>
 
-    <div class="card text-white mb-2 {{saturdayStyle}}" style="max-width: 20rem;">
+    <div class="card text-white mb-2 mb-2 col-md-6 col-sm-12  {{saturdayStyle}}" style="max-width: 20rem;">
       <div class="card-header">Saturday<span class="badge badge-secondary ml-2">{{saturdayCounter}}</span></div>
       <div class="card-body">
         <p class="card-text"><a data-toggle="collapse" data-parent="#exampleAccordion"  href="#saturdayCollapse" aria-expanded="false" aria-controls="collapse6">view names <span class="lnr lnr-chevron-right"></span></a></p>
       </div>
     </div>
 
-    <div class="card text-white mb-2 {{sundayStyle}}" style="max-width: 20rem;">
+    <div class="card text-white mb-2 mb-2 col-md-6 col-sm-12  {{sundayStyle}}" style="max-width: 20rem;">
       <div class="card-header">Sunday<span class="badge badge-secondary ml-2">{{sundayCounter}}</span></div>
       <div class="card-body">
         <p class="card-text"><a data-toggle="collapse" data-parent="#exampleAccordion"  href="#sundayCollapse" aria-expanded="false" aria-controls="collapse7">view names <span class="lnr lnr-chevron-right"></span></a></p>
